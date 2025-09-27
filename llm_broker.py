@@ -1,5 +1,4 @@
 import requests
-import json
 
 def get_llm_response(prompt, use_mock=True, model="mistral"):
     if use_mock:
@@ -16,8 +15,10 @@ def get_llm_response(prompt, use_mock=True, model="mistral"):
         for line in response.iter_lines():
             if line:
                 try:
-                    data = json.loads(line.decode("utf-8"))
-                    full_response += data.get("response", "")
+                    chunk = line.decode("utf-8")
+                    if chunk.startswith("{"):
+                        data = eval(chunk)
+                        full_response += data.get("response", "")
                 except Exception:
                     continue
 
