@@ -1,0 +1,9 @@
+streamlit
+flask
+SpeechRecognition
+pyaudio
+openai
+requests
+numpy
+pandas
+python-dotenv
