@@ -6,4 +6,3 @@ openai
 requests
 numpy
 pandas
-python-dotenv
