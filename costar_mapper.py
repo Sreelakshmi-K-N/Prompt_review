@@ -1,6 +1,11 @@
 import spacy
+import subprocess
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")("en_core_web_sm")
 
 def extract_costar(prompt: str) -> dict:
     doc = nlp(prompt)
